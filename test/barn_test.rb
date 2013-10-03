@@ -15,6 +15,16 @@ class BarnTest < MiniTest::Test
     assert Barn.factories[:user]
   end
 
+  def test_define_context
+    Barn.define :simeon do
+      user = build :user
+      user[:email] = 'sfw@simeonfosterwillbanks.com'
+      user
+    end
+    simeon = Barn.build :simeon
+    assert_equal 'sfw@simeonfosterwillbanks.com', simeon[:email]
+  end
+
   def test_double_define_error
   end
 
